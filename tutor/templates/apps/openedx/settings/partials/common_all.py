@@ -7,7 +7,7 @@ from xmodule.modulestore.modulestore_settings import update_module_store_setting
 # Mongodb connection parameters: simply modify `mongodb_parameters` to affect all connections to MongoDb.
 mongodb_parameters = {
     "db": "{{ MONGODB_DATABASE }}",
-    "host": "{{ MONGODB_HOST }}",
+    "host": "{{ MONGODB_TRANSPORT }}://{{ MONGODB_HOST }}",
     "port": {{ MONGODB_PORT }},
     "user": {% if MONGODB_USERNAME %}"{{ MONGODB_USERNAME }}"{% else %}None{% endif %},
     "password": {% if MONGODB_PASSWORD %}"{{ MONGODB_PASSWORD }}"{% else %}None{% endif %},
@@ -17,6 +17,7 @@ mongodb_parameters = {
     "authsource": "{{ MONGODB_AUTH_SOURCE }}",
     "replicaSet": {% if MONGODB_REPLICA_SET %}"{{ MONGODB_REPLICA_SET }}"{% else %}None{% endif %},
     {% if MONGODB_AUTH_MECHANISM %}"authMechanism": "{{ MONGODB_AUTH_MECHANISM }}",{% endif %}
+    {% if MONGODB_RETRY_WRITES %}"retryWrites": {{ MONGODB_RETRY_WRITES }},{% endif %}
 }
 DOC_STORE_CONFIG = mongodb_parameters
 CONTENTSTORE = {
