@@ -17,7 +17,7 @@ mongodb_parameters = {
     "authsource": "{{ MONGODB_AUTH_SOURCE }}",
     "replicaSet": {% if MONGODB_REPLICA_SET %}"{{ MONGODB_REPLICA_SET }}"{% else %}None{% endif %},
     {% if MONGODB_AUTH_MECHANISM %}"authMechanism": "{{ MONGODB_AUTH_MECHANISM }}",{% endif %}
-    {% if MONGODB_RETRY_WRITES %}"retryWrites": {{ MONGODB_RETRY_WRITES }},{% endif %}
+    "retryWrites": "{{ MONGODB_RETRY_WRITES }}",
 }
 DOC_STORE_CONFIG = mongodb_parameters
 CONTENTSTORE = {
