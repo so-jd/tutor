@@ -14,10 +14,10 @@ mongodb_parameters = {
     # Connection/Authentication
     "connect": False,
     "ssl": {{ MONGODB_USE_SSL }},
+    "retryWrites": {{ MONGODB_RETRY_WRITES }},
     "authsource": "{{ MONGODB_AUTH_SOURCE }}",
     "replicaSet": {% if MONGODB_REPLICA_SET %}"{{ MONGODB_REPLICA_SET }}"{% else %}None{% endif %},
     {% if MONGODB_AUTH_MECHANISM %}"authMechanism": "{{ MONGODB_AUTH_MECHANISM }}",{% endif %}
-    "retryWrites": "{{ MONGODB_RETRY_WRITES }}",
 }
 DOC_STORE_CONFIG = mongodb_parameters
 CONTENTSTORE = {
